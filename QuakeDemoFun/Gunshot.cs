@@ -15,7 +15,7 @@ namespace QuakeDemoFun
 
         public override void Draw(IDraw d)
         {
-            d.Cross(Origin, Color.Gray, 3);
+            d.Cross(Origin, Color.Gray, 8);
         }
     }
 }

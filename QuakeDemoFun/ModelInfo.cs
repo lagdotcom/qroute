@@ -34,6 +34,8 @@ namespace QuakeDemoFun
             Foreground = Brushes.White;
             Size = 32;
             Source = GameSource.Quake;
+
+            DeadFrames = new List<int>();
         }
 
         public string Model { get; set; }
@@ -44,6 +46,7 @@ namespace QuakeDemoFun
         public string Label { get; set; }
         public GameSource Source { get; set; }
         public ModelType Type { get; set; }
+        public List<int> DeadFrames { get; set; }
 
         public override string ToString() => $"{Name} {Type} - {Source}";
     }

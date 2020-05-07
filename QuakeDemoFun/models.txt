@@ -8,77 +8,91 @@ Type: Player
 Name: Ch'thon
 Type: Enemy
 Size: 256
+Dead: 48,49,50,51,52,53,54,55,56
 
 *progs/demon.mdl
 Name: Fiend
 Type: Enemy
 Size: 64
 Label: Fi
+Dead: 45,46,47,48,49,50,51,52,53
 
 *progs/dog.mdl
 Name: Dog
 Type: Enemy
 Size: 64
 Label: d
+Dead: 8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
 
 *progs/enforcer.mdl
 Name: Enforcer
 Type: Enemy
 Label: E
+Dead: 41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65
 
 *progs/fish.mdl
-Name: Fish
+Name: Rotfish
 Type: Enemy
 Label: f
+Dead: 18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38
 
 *progs/hknight.mdl
 Name: Hell Knight
 Type: Enemy
 Label: HK
+Dead: 42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62
 
 *progs/knight.mdl
 Name: Knight
 Type: Enemy
 Label: K
+Dead: 76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96
 
 *progs/ogre.mdl
 Name: Ogre
 Type: Enemy
 Size: 64
 Label: Og
+Dead: 112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135
 
 *progs/oldone.mdl
 Name: Shub-Niggurath
 Type: Enemy
 Size: 256
 Label: Shub
+Dead: 46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66
 
 *progs/shalrath.mdl
 Name: Vore
 Type: Enemy
 Size: 64
 Label: Vo
+Dead: 16,17,18,19,20,21,22
 
 *progs/shambler.mdl
 Name: Shambler
 Type: Enemy
 Size: 64
 Label: Sham
+Dead: 83,84,85,86,87,88,89,90,91,92,93
 
 *progs/soldier.mdl
 Name: Soldier
 Type: Enemy
 Label: s
+Dead: 8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28
 
 *progs/tarbaby.mdl
 Name: Spawn
 Type: Enemy
 Label: Sp
+Dead: 60
 
 *progs/wizard.mdl
 Name: Scrag
 Type: Enemy
 Label: Sc
+Dead: 46,47,48,49,50,51,52,53
 
 *progs/zombie.mdl
 Name: Zombie
@@ -91,12 +105,42 @@ Name: Dragon
 Type: Enemy
 Size: 64
 Label: Dr
+Dead: 80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100
 
 *progs/eel2.mdl
 Source: Rogue
 Name: Eel
 Type: Enemy
 Label: E
+Dead: 6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
+
+*progs/lavaman.mdl
+Source: Rogue
+Type: Enemy
+Size: 64
+Label: Lv
+Dead: 48,49,50,51,52,53,54,55,56
+
+*progs/morph_az.mdl
+Source: Rogue
+Name: Morph
+Type: Enemy
+Label: Mo
+Dead: 121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141
+
+*progs/morph_eg.mdl
+Source: Rogue
+Name: Morph
+Type: Enemy
+Label: Mo
+Dead: 121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141
+
+*progs/morph_gr.mdl
+Source: Rogue
+Name: Morph
+Type: Enemy
+Label: Mo
+Dead: 121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141
 
 *progs/mummy.mdl
 Source: Rogue
@@ -109,12 +153,14 @@ Source: Rogue
 Name: Super Wrath
 Type: Enemy
 Label: SW
+Dead: 91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107
 
 *progs/wrath.mdl
 Source: Rogue
 Name: Wrath
 Type: Enemy
 Label: W
+Dead: 72,73,74,75,76,77,78,79,80,81,82,83,84,85,86
 
 *maps/b_bh10.bsp
 Name: 10hp
@@ -279,6 +325,10 @@ Name: Backpack
 Type: Item
 Background: OliveDrab
 
+*progs/s_light.mdl
+Type: Missile
+Background: Cyan
+
 *progs/grenade.mdl
 Name: Grenade
 Type: Missile
@@ -290,6 +340,11 @@ Type: Missile
 *progs/mervup.mdl
 Source: Rogue
 Name: Multi-Grenade
+Type: Missile
+
+*progs/rockup.mdl
+Source: Rogue
+Name: Multi-Rocket
 Type: Missile
 
 *progs/rockup_d.mdl
@@ -524,17 +579,13 @@ Background: LightBlue
 Size: 16
 Background: Orange
 
-*progs/s_light.mdl
-Size: 8
-Background: LightYellow
-
 *progs/s_light.spr
 Size: 8
 Background: LightYellow
 
 *progs/teleport.mdl
-Size: 16
-Background: Cyan
+Size: 64
+Background: Pink
 
 *progs/armor.mdl
 Name: Green Armor

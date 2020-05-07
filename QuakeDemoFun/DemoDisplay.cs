@@ -161,6 +161,12 @@ namespace QuakeDemoFun
                     continue;
                 }
 
+                if (minf.DeadFrames.Contains(ent.Frame))
+                {
+                    Cross(ent.Origin, Color.DarkRed, minf.Size / 2);
+                    continue;
+                }
+
                 Rectangle rect = GetDrawRect(ent, minf.Size);
                 e.Graphics.FillRectangle(minf.Background, rect);
 
@@ -198,6 +204,7 @@ namespace QuakeDemoFun
         {
             Point p = Convert(ent.Origin);
             int scaled = (int)(size * Zoom);
+            if (scaled < 1) scaled = 1;
             p.X -= scaled / 2;
             p.Y -= scaled / 2;
 
@@ -219,9 +226,11 @@ namespace QuakeDemoFun
         {
             Point p = Convert(org);
             Pen n = new Pen(c);
+            int scaled = (int)(size * Zoom);
+            if (scaled < 1) scaled = 1;
 
-            g.DrawLine(n, p.X - size, p.Y - size, p.X + size, p.Y + size);
-            g.DrawLine(n, p.X + size, p.Y - size, p.X - size, p.Y + size);
+            g.DrawLine(n, p.X - scaled, p.Y - scaled, p.X + scaled, p.Y + scaled);
+            g.DrawLine(n, p.X + scaled, p.Y - scaled, p.X - scaled, p.Y + scaled);
         }
 
         public void Line(QCoords from, QCoords to, Color c)

@@ -117,6 +117,15 @@ namespace QuakeDemoFun
                     {
                         inf.Size = int.Parse(line.Substring(6));
                     }
+                    else if (line.StartsWith("Dead: "))
+                    {
+                        string[] frames = line.Substring(6).Replace(" ", "").Split(',');
+                        foreach (string frame in frames)
+                        {
+                            int fval = int.Parse(frame);
+                            inf.DeadFrames.Add(fval);
+                        }
+                    }
                     else
                         Console.WriteLine($"Unkown instruction: {line}");
                 }
