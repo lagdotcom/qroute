@@ -152,6 +152,9 @@ namespace QuakeDemoFun
             else
                 e = Entities[msg.Entity];
 
+            if (e.Model == "progs/player.mdl" || e.Model == "progs/eyes.mdl")
+                Temps.Add(new Footstep(e.Origin));
+
             if (msg.AnglesX.HasValue) e.Angles.X = msg.AnglesX.Value;
             if (msg.AnglesY.HasValue) e.Angles.Y = msg.AnglesY.Value;
             if (msg.AnglesZ.HasValue) e.Angles.Z = msg.AnglesZ.Value;

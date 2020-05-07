@@ -146,6 +146,9 @@ namespace QuakeDemoFun
             e.Graphics.DrawString($"Kills: {state.Stat(StatIndex.KilledMonsters)} / {state.Stat(StatIndex.NumMonsters)}", Font, Brushes.White, x, y - 14);
             e.Graphics.DrawString($"Secrets: {state.Stat(StatIndex.FoundSecrets)} / {state.Stat(StatIndex.NumSecrets)}", Font, Brushes.White, x, y);
 
+            // draw temps
+            foreach (Temp t in state.Temps) t.Draw(this);
+
             // draw entities
             foreach (Entity ent in state.Entities.Values.Reverse())
             {
@@ -181,9 +184,6 @@ namespace QuakeDemoFun
                     e.Graphics.DrawString(minf.Label, Font, minf.Foreground, lx, ly);
                 }
             }
-
-            // draw temps
-            foreach (Temp t in state.Temps) t.Draw(this);
         }
 
         private Point Convert(QCoords co)
@@ -254,5 +254,10 @@ namespace QuakeDemoFun
             g.DrawLine(new Pen(c), f, t);
         }
 
+        public void Dot(QCoords org, Color c)
+        {
+            Point p = Convert(org);
+            g.DrawRectangle(new Pen(c), p.X, p.Y, 1, 1);
+        }
     }
 }

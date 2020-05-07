@@ -76,6 +76,7 @@
     <Compile Include="Demo\StatIndex.cs" />
     <Compile Include="Demo\TempEntityType.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="Footstep.cs" />
     <Compile Include="GameSource.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="Gunshot.cs" />

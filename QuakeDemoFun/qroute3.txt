@@ -30,6 +30,7 @@ visualizing Quake demos. This latest version runs in Windows.
 	display now configurable! check models.txt
 	added 'cross' display for dead enemies
 	added direction display for players/enemies
+	added trails for players
 
 1.2 - 2020-05-03
 	publically released on SDA!

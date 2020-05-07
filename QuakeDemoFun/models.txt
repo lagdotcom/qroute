@@ -219,7 +219,7 @@ Label: 3
 *progs/invisibl.mdl
 Name: Ring of Shadows
 Type: Item
-Background: DarkGray
+Background: Gray
 Label: R
 Foreground: Yellow
 
@@ -240,9 +240,9 @@ Foreground: Cyan
 *progs/suit.mdl
 Name: Radiation Suit
 Type: Item
-Background: DarkGray
+Background: Gray
 Label: S
-Foreground: Gray
+Foreground: DarkGray
 
 *maps/b_batt0.bsp
 Name: Cells
@@ -480,12 +480,12 @@ Background: Yellow
 *progs/s_spike.mdl
 Type: Missile
 Size: 8
-Background: Gray
+Background: DarkGray
 
 *progs/spike.mdl
 Type: Missile
 Size: 8
-Background: DarkGray
+Background: Gray
 
 *progs/v_spike.mdl
 Type: Missile
@@ -513,7 +513,7 @@ Background: Cyan
 Source: Rogue
 Type: Missile
 Size: 8
-Background: Gray
+Background: DarkGray
 
 *progs/b_g_key.mdl
 Type: Item
