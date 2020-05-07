@@ -14,6 +14,8 @@ namespace QuakeDemoFun
         [STAThread]
         static void Main()
         {
+            Info.Initialise(Application.StartupPath);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());

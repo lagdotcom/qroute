@@ -76,9 +76,11 @@
     <Compile Include="Demo\StatIndex.cs" />
     <Compile Include="Demo\TempEntityType.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="GameSource.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="Gunshot.cs" />
     <Compile Include="IDraw.cs" />
+    <Compile Include="Info.cs" />
     <Compile Include="Lightning.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -86,6 +88,8 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModelInfo.cs" />
+    <Compile Include="ModelType.cs" />
     <Compile Include="ParsedDemo.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
@@ -161,6 +165,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Content Include="models.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="qroute3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

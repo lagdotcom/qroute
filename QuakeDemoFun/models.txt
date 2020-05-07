@@ -1,0 +1,556 @@
+﻿*progs/player.mdl
+Type: Player
+
+*progs/eyes.mdl
+Type: Player
+
+*progs/boss.mdl
+Name: Ch'thon
+Type: Enemy
+Size: 256
+
+*progs/demon.mdl
+Name: Fiend
+Type: Enemy
+Size: 64
+Label: Fi
+
+*progs/dog.mdl
+Name: Dog
+Type: Enemy
+Size: 64
+Label: d
+
+*progs/enforcer.mdl
+Name: Enforcer
+Type: Enemy
+Label: E
+
+*progs/fish.mdl
+Name: Fish
+Type: Enemy
+Label: f
+
+*progs/hknight.mdl
+Name: Hell Knight
+Type: Enemy
+Label: HK
+
+*progs/knight.mdl
+Name: Knight
+Type: Enemy
+Label: K
+
+*progs/ogre.mdl
+Name: Ogre
+Type: Enemy
+Size: 64
+Label: Og
+
+*progs/oldone.mdl
+Name: Shub-Niggurath
+Type: Enemy
+Size: 256
+Label: Shub
+
+*progs/shalrath.mdl
+Name: Vore
+Type: Enemy
+Size: 64
+Label: Vo
+
+*progs/shambler.mdl
+Name: Shambler
+Type: Enemy
+Size: 64
+Label: Sham
+
+*progs/soldier.mdl
+Name: Soldier
+Type: Enemy
+Label: s
+
+*progs/tarbaby.mdl
+Name: Spawn
+Type: Enemy
+Label: Sp
+
+*progs/wizard.mdl
+Name: Scrag
+Type: Enemy
+Label: Sc
+
+*progs/zombie.mdl
+Name: Zombie
+Type: Enemy
+Label: z
+
+*progs/dragon.mdl
+Source: Rogue
+Name: Dragon
+Type: Enemy
+Size: 64
+Label: Dr
+
+*progs/eel2.mdl
+Source: Rogue
+Name: Eel
+Type: Enemy
+Label: E
+
+*progs/mummy.mdl
+Source: Rogue
+Name: Mummy
+Type: Enemy
+Label: M
+
+*progs/s_wrath.mdl
+Source: Rogue
+Name: Super Wrath
+Type: Enemy
+Label: SW
+
+*progs/wrath.mdl
+Source: Rogue
+Name: Wrath
+Type: Enemy
+Label: W
+
+*maps/b_bh10.bsp
+Name: 10hp
+Type: Item
+Background: Green
+Label: h
+
+*maps/b_bh25.bsp
+Name: 25hp
+Type: Item
+Background: Green
+Label: H
+
+*maps/b_bh100.bsp
+Name: Megahealth
+Type: Item
+Background: Green
+Label: H
+
+*progs/g_light.mdl
+Name: Thunderbolt
+Type: Item
+Background: Blue
+Label: 8
+
+*progs/g_nail.mdl
+Name: Nailgun
+Type: Item
+Background: Blue
+Label: 4
+
+*progs/g_nail2.mdl
+Name: Perforator
+Type: Item
+Background: Blue
+Label: 5
+
+*progs/g_rock.mdl
+Name: Grenade Launcher
+Type: Item
+Background: Blue
+Label: 6
+
+*progs/g_rock2.mdl
+Name: Rocket Launcher
+Type: Item
+Background: Blue
+Label: 7
+
+*progs/g_shot.mdl
+Name: Super Shotgun
+Type: Item
+Background: Blue
+Label: 3
+
+*progs/invisibl.mdl
+Name: Ring of Shadows
+Type: Item
+Background: DarkGray
+Label: R
+Foreground: Yellow
+
+*progs/invulner.mdl
+Name: Pentagram of Invulnerability
+Type: Item
+Background: DarkRed
+Label: P
+Foreground: Red
+
+*progs/quaddama.mdl
+Name: Quad Damage
+Type: Item
+Background: DarkCyan
+Label: Q
+Foreground: Cyan
+
+*progs/suit.mdl
+Name: Radiation Suit
+Type: Item
+Background: DarkGray
+Label: S
+Foreground: Gray
+
+*maps/b_batt0.bsp
+Name: Cells
+Type: Item
+Label: c
+
+*maps/b_batt1.bsp
+Name: Cells
+Type: Item
+Label: C
+
+*maps/b_nail0.bsp
+Name: Nails
+Type: Item
+Label: n
+
+*maps/b_nail1.bsp
+Name: Nails
+Type: Item
+Label: N
+
+*maps/b_rock0.bsp
+Name: Rockets
+Type: Item
+Label: r
+
+*maps/b_rock1.bsp
+Name: Rockets
+Type: Item
+Label: R
+
+*maps/b_shell0.bsp
+Name: Shells
+Type: Item
+Label: s
+
+*maps/b_shell1.bsp
+Name: Shells
+Type: Item
+Label: S
+
+*maps/b_lnail0.bsp
+Source: Rogue
+Name: Lava Nails
+Type: Item
+Label: ln
+
+*maps/b_lnail1.bsp
+Source: Rogue
+Name: Lava Nails
+Type: Item
+Label: LN
+
+*maps/b_mrock0.bsp
+Source: Rogue
+Name: Multi-Rockets
+Type: Item
+Label: mr
+
+*maps/b_mrock1.bsp
+Source: Rogue
+Name: Multi-Rockets
+Type: Item
+Label: MR
+
+*maps/b_plas0.bsp
+Source: Rogue
+Name: Plasma
+Type: Item
+Label: pl
+
+*maps/b_plas1.bsp
+Source: Rogue
+Name: Plasma
+Type: Item
+Label: PL
+
+*progs/backpack.mdl
+Name: Backpack
+Type: Item
+Background: OliveDrab
+
+*progs/grenade.mdl
+Name: Grenade
+Type: Missile
+
+*progs/missile.mdl
+Name: Rocket
+Type: Missile
+
+*progs/mervup.mdl
+Source: Rogue
+Name: Multi-Grenade
+Type: Missile
+
+*progs/rockup_d.mdl
+Source: Rogue
+Name: Multi-Rocket
+Type: Missile
+
+*progs/gib1.mdl
+Type: Gib
+
+*progs/gib2.mdl
+Type: Gib
+
+*progs/gib3.mdl
+Type: Gib
+
+*progs/h_demon.mdl
+Type: Gib
+
+*progs/h_dog.mdl
+Type: Gib
+
+*progs/h_guard.mdl
+Type: Gib
+
+*progs/h_hellkn.mdl
+Type: Gib
+
+*progs/h_knight.mdl
+Type: Gib
+
+*progs/h_mega.mdl
+Type: Gib
+
+*progs/h_ogre.mdl
+Type: Gib
+
+*progs/h_player.mdl
+Type: Gib
+
+*progs/h_shal.mdl
+Type: Gib
+
+*progs/h_shams.mdl
+Type: Gib
+
+*progs/h_wizard.mdl
+Type: Gib
+
+*progs/h_zombie.mdl
+Type: Gib
+
+*progs/drggib01.mdl
+Source: Rogue
+Type: Gib
+
+*progs/drggib02.mdl
+Source: Rogue
+Type: Gib
+
+*progs/drggib03.mdl
+Source: Rogue
+Type: Gib
+
+*progs/eelgib.mdl
+Source: Rogue
+Type: Gib
+
+*progs/eelhead.mdl
+Source: Rogue
+Type: Gib
+
+*progs/s_wrtgb1.mdl
+Source: Rogue
+Type: Gib
+
+*progs/s_wrtgb2.mdl
+Source: Rogue
+Type: Gib
+
+*progs/s_wrtgb3.mdl
+Source: Rogue
+Type: Gib
+
+*progs/statgib1.mdl
+Source: Rogue
+Type: Gib
+
+*progs/statgib2.mdl
+Source: Rogue
+Type: Gib
+
+*progs/statgib3.mdl
+Source: Rogue
+Type: Gib
+
+*progs/timegib.mdl
+Source: Rogue
+Type: Gib
+
+*progs/wrthgib1.mdl
+Source: Rogue
+Type: Gib
+
+*progs/wrthgib2.mdl
+Source: Rogue
+Type: Gib
+
+*progs/wrthgib3.mdl
+Source: Rogue
+Type: Gib
+
+*progs/zom_gib.mdl
+Type: Missile
+Size: 12
+Background: DarkRed
+
+*progs/laser.mdl
+Type: Missile
+Size: 12
+Background: OrangeRed
+
+*progs/lavaball.mdl
+Type: Missile
+Size: 12
+Background: OrangeRed
+
+*progs/k_spike.mdl
+Type: Missile
+Size: 8
+Background: Yellow
+
+*progs/s_spike.mdl
+Type: Missile
+Size: 8
+Background: Gray
+
+*progs/spike.mdl
+Type: Missile
+Size: 8
+Background: DarkGray
+
+*progs/v_spike.mdl
+Type: Missile
+Size: 12
+Background: Purple
+
+*progs/w_spike.mdl
+Type: Missile
+Size: 8
+Background: GreenYellow
+
+*progs/lspike.mdl
+Source: Rogue
+Type: Missile
+Size: 8
+Background: DarkOrange
+
+*progs/plasma.mdl
+Source: Rogue
+Type: Missile
+Size: 16
+Background: Cyan
+
+*progs/w_ball.mdl
+Source: Rogue
+Type: Missile
+Size: 8
+Background: Gray
+
+*progs/b_g_key.mdl
+Type: Item
+Background: Gold
+Label: G
+Foreground: DarkRed
+
+*progs/m_g_key.mdl
+Type: Item
+Background: Gold
+Label: G
+Foreground: DarkRed
+
+*progs/w_g_key.mdl
+Type: Item
+Background: Gold
+Label: G
+Foreground: DarkRed
+
+*progs/b_s_key.mdl
+Type: Item
+Background: Silver
+Label: S
+Foreground: DarkBlue
+
+*progs/m_s_key.mdl
+Type: Item
+Background: Silver
+Label: S
+Foreground: DarkBlue
+
+*progs/w_s_key.mdl
+Type: Item
+Background: Silver
+Label: S
+Foreground: DarkBlue
+
+*progs/end1.mdl
+Type: Item
+Background: Purple
+Label: R
+
+*progs/end2.mdl
+Type: Item
+Background: Purple
+Label: R
+
+*progs/end3.mdl
+Type: Item
+Background: Purple
+Label: R
+
+*progs/end4.mdl
+Type: Item
+Background: Purple
+Label: R
+
+*progs/s_bubble.spr
+Size: 8
+Background: LightBlue
+
+*progs/s_explod.spr
+Size: 16
+Background: Orange
+
+*progs/s_light.mdl
+Size: 8
+Background: LightYellow
+
+*progs/s_light.spr
+Size: 8
+Background: LightYellow
+
+*progs/teleport.mdl
+Size: 16
+Background: Cyan
+
+*progs/armor.mdl
+Name: Green Armor
+Type: Item
+Background: DarkGreen
+Label: A
+
+*progs/armor.mdl:1
+Name: Yellow Armor
+Type: Item
+Background: Yellow
+Label: A
+Foreground: Green
+
+*progs/armor.mdl:2
+Name: Red Armor
+Type: Item
+Background: DarkRed
+Label: A

@@ -17,171 +17,10 @@ namespace QuakeDemoFun
         private int mx, my;
         private Graphics g;
 
-        private ModelInfo DefaultInfo = new ModelInfo(Brushes.White, 32);
-        private ModelInfo GreenArmor = new ModelInfo(Brushes.DarkGreen, 32, "A");
-        private ModelInfo YellowArmor = new ModelInfo(Brushes.GreenYellow, 32, "A", Brushes.DarkGreen);
-        private ModelInfo RedArmor = new ModelInfo(Brushes.DarkRed, 32, "A");
-
-        private Dictionary<int, string> WeaponNames = new Dictionary<int, string>()
-        {
-            { 1, "S" },
-            { 2, "SS" },
-            { 4, "N" },
-            { 8, "SN" },
-            { 16, "GL" },
-            { 32, "RL" },
-            { 64, "Th" },
-        };
-
-        private readonly Dictionary<string, ModelInfo> ModelInfos = new Dictionary<string, ModelInfo>();
-
-        private readonly Color[] QuakeColors = new Color[]
-        {
-            Color.White,
-            Color.FromArgb(128, 64, 0),
-            Color.FromArgb(128, 128, 255),
-            Color.FromArgb(0, 64, 0),
-            Color.FromArgb(128, 0, 0),
-            Color.FromArgb(192, 192, 0),
-            Color.FromArgb(255, 128, 0),
-            Color.FromArgb(255, 192, 160),
-            Color.FromArgb(144, 0, 80),
-            Color.FromArgb(233, 88, 142),
-            Color.FromArgb(255, 192, 144),
-            Color.FromArgb(0, 128, 80),
-            Color.FromArgb(255, 255, 0),
-            Color.FromArgb(0, 0, 255),
-        };
-
         public DemoDisplay()
         {
             InitializeComponent();
             DoubleBuffered = true;
-
-            ModelInfos.Add("progs/boss.mdl", new ModelInfo(Brushes.Red, 256, "Ch'thon"));
-            ModelInfos.Add("progs/demon.mdl", new ModelInfo(Brushes.Red, 64, "Fi"));
-            ModelInfos.Add("progs/dog.mdl", new ModelInfo(Brushes.Red, 64, "d"));
-            ModelInfos.Add("progs/enforcer.mdl", new ModelInfo(Brushes.Red, 32, "E"));
-            ModelInfos.Add("progs/fish.mdl", new ModelInfo(Brushes.Red, 32, "f"));
-            ModelInfos.Add("progs/hknight.mdl", new ModelInfo(Brushes.Red, 32, "HK"));
-            ModelInfos.Add("progs/knight.mdl", new ModelInfo(Brushes.Red, 32, "K"));
-            ModelInfos.Add("progs/ogre.mdl", new ModelInfo(Brushes.Red, 64, "Og"));
-            ModelInfos.Add("progs/oldone.mdl", new ModelInfo(Brushes.Red, 256, "Shub"));
-            ModelInfos.Add("progs/shalrath.mdl", new ModelInfo(Brushes.Red, 64, "Vo"));
-            ModelInfos.Add("progs/shambler.mdl", new ModelInfo(Brushes.Red, 64, "Sham"));
-            ModelInfos.Add("progs/soldier.mdl", new ModelInfo(Brushes.Red, 32, "s"));
-            ModelInfos.Add("progs/tarbaby.mdl", new ModelInfo(Brushes.Red, 32, "Sp"));
-            ModelInfos.Add("progs/wizard.mdl", new ModelInfo(Brushes.Red, 32, "Sc"));
-            ModelInfos.Add("progs/zombie.mdl", new ModelInfo(Brushes.Red, 32, "Z"));
-            // rogue
-            ModelInfos.Add("progs/dragon.mdl", new ModelInfo(Brushes.Red, 64, "Dr"));
-            ModelInfos.Add("progs/eel2.mdl", new ModelInfo(Brushes.Red, 32, "E"));
-            ModelInfos.Add("progs/mummy.mdl", new ModelInfo(Brushes.Red, 32, "Mu"));
-            ModelInfos.Add("progs/s_wrath.mdl", new ModelInfo(Brushes.Red, 32, "SW"));
-            ModelInfos.Add("progs/wrath.mdl", new ModelInfo(Brushes.Red, 32, "Wr"));
-
-            ModelInfos.Add("maps/b_bh10.bsp", new ModelInfo(Brushes.Green, 32, "h"));
-            ModelInfos.Add("maps/b_bh25.bsp", new ModelInfo(Brushes.Green, 32, "H"));
-            ModelInfos.Add("maps/b_bh100.bsp", new ModelInfo(Brushes.Green, 32, "M"));
-
-            ModelInfos.Add("progs/g_light.mdl", new ModelInfo(Brushes.Blue, 32, "8"));
-            ModelInfos.Add("progs/g_nail.mdl", new ModelInfo(Brushes.Blue, 32, "4"));
-            ModelInfos.Add("progs/g_nail2.mdl", new ModelInfo(Brushes.Blue, 32, "5"));
-            ModelInfos.Add("progs/g_rock.mdl", new ModelInfo(Brushes.Blue, 32, "6"));
-            ModelInfos.Add("progs/g_rock2.mdl", new ModelInfo(Brushes.Blue, 32, "7"));
-            ModelInfos.Add("progs/g_shot.mdl", new ModelInfo(Brushes.Blue, 32, "3"));
-
-            ModelInfos.Add("progs/invisibl.mdl", new ModelInfo(Brushes.DarkGray, 32, "R", Brushes.Yellow));
-            ModelInfos.Add("progs/invulner.mdl", new ModelInfo(Brushes.DarkRed, 32, "P", Brushes.Red));
-            ModelInfos.Add("progs/quaddama.mdl", new ModelInfo(Brushes.DarkCyan, 32, "Q", Brushes.Cyan));
-            ModelInfos.Add("progs/suit.mdl", new ModelInfo(Brushes.DarkGray, 32, "S", Brushes.Gray));
-
-            ModelInfos.Add("maps/b_batt0.bsp", new ModelInfo(Brushes.Brown, 32, "c"));
-            ModelInfos.Add("maps/b_batt1.bsp", new ModelInfo(Brushes.Brown, 32, "c"));
-            ModelInfos.Add("maps/b_nail0.bsp", new ModelInfo(Brushes.Brown, 32, "n"));
-            ModelInfos.Add("maps/b_nail1.bsp", new ModelInfo(Brushes.Brown, 32, "N"));
-            ModelInfos.Add("maps/b_rock0.bsp", new ModelInfo(Brushes.Brown, 32, "r"));
-            ModelInfos.Add("maps/b_rock1.bsp", new ModelInfo(Brushes.Brown, 32, "R"));
-            ModelInfos.Add("maps/b_shell0.bsp", new ModelInfo(Brushes.Brown, 32, "s"));
-            ModelInfos.Add("maps/b_shell1.bsp", new ModelInfo(Brushes.Brown, 32, "S"));
-            // rogue
-            ModelInfos.Add("maps/b_lnail0.bsp", new ModelInfo(Brushes.Brown, 32, "ln"));
-            ModelInfos.Add("maps/b_lnail1.bsp", new ModelInfo(Brushes.Brown, 32, "LN"));
-            ModelInfos.Add("maps/b_mrock0.bsp", new ModelInfo(Brushes.Brown, 32, "mr"));
-            ModelInfos.Add("maps/b_mrock1.bsp", new ModelInfo(Brushes.Brown, 32, "MR"));
-            ModelInfos.Add("maps/b_plas0.bsp", new ModelInfo(Brushes.Brown, 32, "pl"));
-            ModelInfos.Add("maps/b_plas1.bsp", new ModelInfo(Brushes.Brown, 32, "PL"));
-
-            ModelInfos.Add("progs/backpack.mdl", new ModelInfo(Brushes.OliveDrab, 16));
-
-            ModelInfos.Add("progs/grenade.mdl", new ModelInfo(Brushes.Gray, 16));
-            ModelInfos.Add("progs/missile.mdl", new ModelInfo(Brushes.Gray, 16));
-            // rogue
-            ModelInfos.Add("progs/mervup.mdl", new ModelInfo(Brushes.Gray, 16));
-            ModelInfos.Add("progs/rockup_d.mdl", new ModelInfo(Brushes.Gray, 16));
-
-            ModelInfos.Add("progs/gib1.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/gib2.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/gib3.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/h_demon.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/h_dog.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/h_guard.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/h_hellkn.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/h_knight.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/h_mega.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/h_ogre.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/h_player.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/h_shal.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/h_shams.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/h_wizard.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/h_zombie.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            // rogue
-            ModelInfos.Add("progs/drggib01.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/drggib02.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/drggib03.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/eelgib.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/eelhead.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/s_wrtgb1.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/s_wrtgb2.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/s_wrtgb3.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/statgib1.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/statgib2.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/statgib3.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/timegib.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/wrthgib1.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/wrthgib2.mdl", new ModelInfo(Brushes.DarkRed, 8));
-            ModelInfos.Add("progs/wrthgib3.mdl", new ModelInfo(Brushes.DarkRed, 8));
-
-            ModelInfos.Add("progs/zom_gib.mdl", new ModelInfo(Brushes.DarkRed, 12));
-            ModelInfos.Add("progs/laser.mdl", new ModelInfo(Brushes.OrangeRed, 12));
-            ModelInfos.Add("progs/lavaball.mdl", new ModelInfo(Brushes.OrangeRed, 12));
-            ModelInfos.Add("progs/k_spike.mdl", new ModelInfo(Brushes.Yellow, 8));
-            ModelInfos.Add("progs/s_spike.mdl", new ModelInfo(Brushes.Gray, 8));
-            ModelInfos.Add("progs/spike.mdl", new ModelInfo(Brushes.DarkGray, 8));
-            ModelInfos.Add("progs/v_spike.mdl", new ModelInfo(Brushes.Purple, 12));
-            ModelInfos.Add("progs/w_spike.mdl", new ModelInfo(Brushes.GreenYellow, 8));
-            // rogue
-            ModelInfos.Add("progs/lspike.mdl", new ModelInfo(Brushes.DarkOrange, 8));
-            ModelInfos.Add("progs/plasma.mdl", new ModelInfo(Brushes.Cyan, 16));
-            ModelInfos.Add("progs/w_ball.mdl", new ModelInfo(Brushes.Gray, 8));
-
-            ModelInfos.Add("progs/b_g_key.mdl", new ModelInfo(Brushes.Gold, 32, "G", Brushes.DarkRed));
-            ModelInfos.Add("progs/m_g_key.mdl", new ModelInfo(Brushes.Gold, 32, "G", Brushes.DarkRed));
-            ModelInfos.Add("progs/w_g_key.mdl", new ModelInfo(Brushes.Gold, 32, "G", Brushes.DarkRed));
-            ModelInfos.Add("progs/b_s_key.mdl", new ModelInfo(Brushes.Silver, 32, "S", Brushes.DarkBlue));
-            ModelInfos.Add("progs/m_s_key.mdl", new ModelInfo(Brushes.Silver, 32, "S", Brushes.DarkBlue));
-            ModelInfos.Add("progs/w_s_key.mdl", new ModelInfo(Brushes.Silver, 32, "S", Brushes.DarkBlue));
-
-            ModelInfos.Add("progs/end1.mdl", new ModelInfo(Brushes.Purple, 32, "R"));
-            ModelInfos.Add("progs/end2.mdl", new ModelInfo(Brushes.Purple, 32, "R"));
-            ModelInfos.Add("progs/end3.mdl", new ModelInfo(Brushes.Purple, 32, "R"));
-            ModelInfos.Add("progs/end4.mdl", new ModelInfo(Brushes.Purple, 32, "R"));
-
-            ModelInfos.Add("progs/s_bubble.spr", new ModelInfo(Brushes.LightBlue, 8));
-            ModelInfos.Add("progs/s_explod.spr", new ModelInfo(Brushes.Orange, 16));
-            ModelInfos.Add("progs/s_light.mdl", new ModelInfo(Brushes.LightYellow, 8));
-            ModelInfos.Add("progs/s_light.spr", new ModelInfo(Brushes.LightYellow, 8));
-            ModelInfos.Add("progs/teleport.mdl", new ModelInfo(Brushes.Cyan, 16));
 
             MouseMove += DemoDisplay_MouseMove;
             Resize += DemoDisplay_Resize;
@@ -276,7 +115,7 @@ namespace QuakeDemoFun
                 if (pl.Netname == null) break;
                 int windex = state.Stat(wpstat);
                 string hptext = state.Stats.ContainsKey(hpstat) ? state.Stat(hpstat).ToString() : "?";
-                string wptext = WeaponNames.ContainsKey(windex) ? WeaponNames[windex] : "?";
+                string wptext = Info.WeaponNames.ContainsKey(windex) ? Info.WeaponNames[windex] : "?";
                 string amtext = state.Stats.ContainsKey(amstat) ? state.Stat(amstat).ToString() : "?";
 
                 Entity ent = state.Entities[pl.Entity];
@@ -310,44 +149,16 @@ namespace QuakeDemoFun
             // draw entities
             foreach (Entity ent in state.Entities.Values.Reverse())
             {
-                if (ent.ModelIndex == 0) continue;
+                if (ent.Number == 0) continue;
                 if (ent.Model[0] == '*') continue;
+                if (ent.Model == "?") continue;
 
-                if (ent.Model == "progs/eyes.mdl" || ent.Model == "progs/player.mdl")
+                ModelInfo minf = Info.GetModelInfo(ent.Model, ent.Skin);
+                if (minf.Type == ModelType.Player)
                 {
                     Player pl = Demo.GetPlayer((byte)(ent.Number - 1));
                     DrawPlayer(e.Graphics, ent, pl);
                     continue;
-                }
-
-                ModelInfo minf;
-
-                if (ent.Model == "progs/armor.mdl")
-                {
-                    switch (ent.Skin)
-                    {
-                        case 0:
-                            minf = GreenArmor;
-                            break;
-
-                        case 1:
-                            minf = YellowArmor;
-                            break;
-
-                        default:
-                            minf = RedArmor;
-                            break;
-                    }
-                }
-                else if (ModelInfos.ContainsKey(ent.Model))
-                {
-                    minf = ModelInfos[ent.Model];
-                }
-                else
-                {
-                    if (ent.Model[0] != '*' && !ent.Model.StartsWith("maps"))
-                        Console.WriteLine(ent.Model);
-                    minf = DefaultInfo;
                 }
 
                 Rectangle rect = GetDrawRect(ent, minf.Size);
@@ -396,8 +207,8 @@ namespace QuakeDemoFun
         private void DrawPlayer(Graphics g, Entity ent, Player pl, Rectangle r = default)
         {
             if (r == default) r = GetDrawRect(ent, PlayerSize);
-            Brush top = new SolidBrush(QuakeColors[pl.Top]);
-            Brush bot = new SolidBrush(QuakeColors[pl.Pants]);
+            Brush top = new SolidBrush(Info.QuakeColors[pl.Top]);
+            Brush bot = new SolidBrush(Info.QuakeColors[pl.Pants]);
 
             g.FillRectangle(bot, r);
             g.FillRectangle(top, r.Left, r.Top, r.Width, r.Height / 2);
@@ -421,20 +232,5 @@ namespace QuakeDemoFun
             g.DrawLine(new Pen(c), f, t);
         }
 
-        struct ModelInfo
-        {
-            public ModelInfo(Brush bg, int size, string label = null, Brush fg = default)
-            {
-                Background = bg;
-                Size = size;
-                Label = label;
-                Foreground = fg == default ? Brushes.White : fg;
-            }
-
-            public Brush Background { get; set; }
-            public int Size { get; set; }
-            public string Label { get; set; }
-            public Brush Foreground { get; set; }
-        }
     }
 }

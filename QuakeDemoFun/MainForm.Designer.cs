@@ -200,7 +200,7 @@
             this.Controls.Add(this.MainMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "QRoute3 v1.2";
+            this.Text = "QRoute3 v1.3";
             this.BottomPanel.ResumeLayout(false);
             this.BottomPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Timeline)).EndInit();
