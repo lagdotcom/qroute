@@ -91,6 +91,8 @@
     </Compile>
     <Compile Include="ModelInfo.cs" />
     <Compile Include="ModelType.cs" />
+    <Compile Include="PackEntry.cs" />
+    <Compile Include="PackFile.cs" />
     <Compile Include="ParsedDemo.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />

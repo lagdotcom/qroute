@@ -46,6 +46,8 @@
             this.OpenDem = new System.Windows.Forms.OpenFileDialog();
             this.Display = new QuakeDemoFun.DemoDisplay();
             this.OpenBsp = new System.Windows.Forms.OpenFileDialog();
+            this.addPAKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenPak = new System.Windows.Forms.OpenFileDialog();
             this.BottomPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Timeline)).BeginInit();
             this.MainMenu.SuspendLayout();
@@ -131,6 +133,7 @@
             this.openToolStripMenuItem,
             this.overlayToolStripMenuItem,
             this.loadBSPToolStripMenuItem,
+            this.addPAKToolStripMenuItem,
             this.closeToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -140,37 +143,37 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "&Open...";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenMenuItem_Click);
             // 
             // overlayToolStripMenuItem
             // 
             this.overlayToolStripMenuItem.Name = "overlayToolStripMenuItem";
-            this.overlayToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.overlayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.overlayToolStripMenuItem.Text = "O&verlay...";
-            this.overlayToolStripMenuItem.Click += new System.EventHandler(this.overlayToolStripMenuItem_Click);
+            this.overlayToolStripMenuItem.Click += new System.EventHandler(this.OverlayMenuItem_Click);
             // 
             // loadBSPToolStripMenuItem
             // 
             this.loadBSPToolStripMenuItem.Name = "loadBSPToolStripMenuItem";
-            this.loadBSPToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.loadBSPToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadBSPToolStripMenuItem.Text = "Load &BSP...";
-            this.loadBSPToolStripMenuItem.Click += new System.EventHandler(this.loadBSPToolStripMenuItem_Click);
+            this.loadBSPToolStripMenuItem.Click += new System.EventHandler(this.LoadBSPMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.closeToolStripMenuItem.Text = "&Close";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.CloseMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
             // OpenDem
             // 
@@ -189,6 +192,17 @@
             // OpenBsp
             // 
             this.OpenBsp.Filter = "Quake BSP files|*.bsp";
+            // 
+            // addPAKToolStripMenuItem
+            // 
+            this.addPAKToolStripMenuItem.Name = "addPAKToolStripMenuItem";
+            this.addPAKToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addPAKToolStripMenuItem.Text = "Add &PAK...";
+            this.addPAKToolStripMenuItem.Click += new System.EventHandler(this.AddPAKMenuItem_Click);
+            // 
+            // OpenPak
+            // 
+            this.OpenPak.Filter = "Quake PAK files|*.pak";
             // 
             // MainForm
             // 
@@ -229,6 +243,8 @@
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog OpenBsp;
         private System.Windows.Forms.ToolStripMenuItem loadBSPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addPAKToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog OpenPak;
     }
 }
 

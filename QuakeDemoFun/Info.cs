@@ -53,8 +53,6 @@ namespace QuakeDemoFun
 
             if (ModelInfos.ContainsKey(modelId)) return ModelInfos[modelId];
 
-            Console.WriteLine($"No data for model: {modelId}");
-
             ModelType type = ModelType.Misc;
             if (model.StartsWith("maps/")) type = ModelType.Map;
 
@@ -127,7 +125,7 @@ namespace QuakeDemoFun
                         }
                     }
                     else
-                        Console.WriteLine($"Unkown instruction: {line}");
+                        Console.WriteLine($"Unknown instruction in models.txt: {line}");
                 }
 
                 if (inf != null) ModelInfos[inf.Model] = inf;

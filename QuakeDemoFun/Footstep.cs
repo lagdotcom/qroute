@@ -4,7 +4,7 @@ namespace QuakeDemoFun
 {
     public class Footstep : Temp
     {
-        private static Color StepColor = Color.FromArgb(40, 40, 40);
+        private static readonly Color StepColor = Color.FromArgb(40, 40, 40);
 
         public Footstep(QCoords org) : base(0.5f)
         {

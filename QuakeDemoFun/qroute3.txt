@@ -21,6 +21,7 @@ visualizing Quake demos. This latest version runs in Windows.
 - Sound playback
 - Velocity display
 - Many configurable options
+- DZ reading
 - Marathon playback?
 
 
@@ -31,6 +32,7 @@ visualizing Quake demos. This latest version runs in Windows.
 	added 'cross' display for dead enemies
 	added direction display for players/enemies
 	added trails for players
+	supports reading BSPs from inside PAK files
 
 1.2 - 2020-05-03
 	publically released on SDA!

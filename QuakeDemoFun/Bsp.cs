@@ -15,49 +15,62 @@ namespace QuakeDemoFun
             {
                 using (BinaryReader br = new BinaryReader(stream))
                 {
-                    Version = br.ReadInt32();
-                    if (Version != 0x1d) throw new NotImplementedException($"BSP version: {Version:X} != 1D");
-
-                    DirEntry ents_e = new DirEntry(br);
-                    DirEntry planes_e = new DirEntry(br);
-                    DirEntry miptex_e = new DirEntry(br);
-                    DirEntry vertices_e = new DirEntry(br);
-                    DirEntry visilist_e = new DirEntry(br);
-                    DirEntry nodes_e = new DirEntry(br);
-                    DirEntry texinfo_e = new DirEntry(br);
-                    DirEntry faces_e = new DirEntry(br);
-                    DirEntry lightmap_e = new DirEntry(br);
-                    DirEntry clipnode_e = new DirEntry(br);
-                    DirEntry leaves_e = new DirEntry(br);
-                    DirEntry lface_e = new DirEntry(br);
-                    DirEntry edges_e = new DirEntry(br);
-                    DirEntry ledges_e = new DirEntry(br);
-                    DirEntry models_e = new DirEntry(br);
-
-                    br.BaseStream.Seek(planes_e.Offset, SeekOrigin.Begin);
-                    List<Plane> planes = new List<Plane>();
-                    for (var i = 0; i < planes_e.Size / 20; i++)
-                        planes.Add(new Plane(br));
-
-                    br.BaseStream.Seek(vertices_e.Offset, SeekOrigin.Begin);
-                    Vertices = new List<Vertex>();
-                    for (var i = 0; i < vertices_e.Size / 12; i++)
-                        Vertices.Add(new Vertex(br));
-
-                    br.BaseStream.Seek(edges_e.Offset, SeekOrigin.Begin);
-                    Edges = new List<Edge>();
-                    for (var i = 0; i < edges_e.Size / 4; i++)
-                        Edges.Add(new Edge(br));
+                    Read(br);
                 }
             }
         }
 
+        public Bsp(Stream stream)
+        {
+            using (BinaryReader br = new BinaryReader(stream))
+            {
+                Read(br);
+            }
+        }
+
+        private void Read(BinaryReader br)
+        { 
+            Version = br.ReadInt32();
+            if (Version != 0x1d) throw new NotImplementedException($"BSP version: {Version:X} != 1D");
+
+            DirEntry ents_e = new DirEntry(br);
+            DirEntry planes_e = new DirEntry(br);
+            DirEntry miptex_e = new DirEntry(br);
+            DirEntry vertices_e = new DirEntry(br);
+            DirEntry visilist_e = new DirEntry(br);
+            DirEntry nodes_e = new DirEntry(br);
+            DirEntry texinfo_e = new DirEntry(br);
+            DirEntry faces_e = new DirEntry(br);
+            DirEntry lightmap_e = new DirEntry(br);
+            DirEntry clipnode_e = new DirEntry(br);
+            DirEntry leaves_e = new DirEntry(br);
+            DirEntry lface_e = new DirEntry(br);
+            DirEntry edges_e = new DirEntry(br);
+            DirEntry ledges_e = new DirEntry(br);
+            DirEntry models_e = new DirEntry(br);
+
+            br.BaseStream.Seek(planes_e.Offset, SeekOrigin.Begin);
+            List<Plane> planes = new List<Plane>();
+            for (var i = 0; i < planes_e.Size / 20; i++)
+                planes.Add(new Plane(br));
+
+            br.BaseStream.Seek(vertices_e.Offset, SeekOrigin.Begin);
+            Vertices = new List<Vertex>();
+            for (var i = 0; i < vertices_e.Size / 12; i++)
+                Vertices.Add(new Vertex(br));
+
+            br.BaseStream.Seek(edges_e.Offset, SeekOrigin.Begin);
+            Edges = new List<Edge>();
+            for (var i = 0; i < edges_e.Size / 4; i++)
+                Edges.Add(new Edge(br));
+        }
+
         public int Version { get; private set; }
 
-        public List<Edge> Edges { get; private set; }
-        public List<Vertex> Vertices { get; private set; }
+        internal List<Edge> Edges { get; private set; }
+        internal List<Vertex> Vertices { get; private set; }
 
-        public struct DirEntry
+        internal struct DirEntry
         {
             public DirEntry(BinaryReader br)
             {
@@ -71,7 +84,7 @@ namespace QuakeDemoFun
             public override string ToString() => $"@{Offset} +{Size}";
         }
 
-        public struct Plane
+        internal struct Plane
         {
             public Plane(BinaryReader br)
             {
@@ -91,7 +104,7 @@ namespace QuakeDemoFun
             public override string ToString() => $"[{NormalX} {NormalY} {NormalZ}] d{Distance} {Type}";
         }
 
-        public enum PlaneType : int
+        internal enum PlaneType : int
         {
             AxialX = 0,
             AxialY,
@@ -101,7 +114,7 @@ namespace QuakeDemoFun
             NonAxialZ,
         }
 
-        public struct Vertex
+        internal struct Vertex
         {
             public Vertex(BinaryReader br)
             {
@@ -117,7 +130,7 @@ namespace QuakeDemoFun
             public override string ToString() => $"({X} {Y} {Z})";
         }
 
-        public struct Edge
+        internal struct Edge
         {
             public Edge(BinaryReader br)
             {

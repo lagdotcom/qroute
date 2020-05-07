@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace QuakeDemoFun
@@ -10,7 +12,10 @@ namespace QuakeDemoFun
         {
             InitializeComponent();
             Demo = new ParsedDemo();
+            LoadedPaks = new List<PackFile>();
         }
+
+        public List<PackFile> LoadedPaks { get; private set; }
 
         public ParsedDemo Demo { get; private set; }
 
@@ -71,6 +76,21 @@ namespace QuakeDemoFun
             return time / 1000f;
         }
 
+        private void AutoloadBsp()
+        {
+            if (Demo == null || Demo.Models.Count < 1) return;
+
+            foreach (PackFile pak in LoadedPaks)
+            {
+                string bspfile = Demo.Models[0];
+                if (pak.Contains(bspfile))
+                {
+                    Bsp bsp = new Bsp(pak.GetFile(bspfile));
+                    Display.Bsp = bsp;
+                }
+            }
+        }
+
         private void TimeLabel_TextChanged(object sender, EventArgs e)
         {
             if (float.TryParse(TimeLabel.Text, out float time))
@@ -124,13 +144,13 @@ namespace QuakeDemoFun
             Clock.Enabled = enabled;
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitMenuItem_Click(object sender, EventArgs e)
         {
             ClockState(false);
             Application.Exit();
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenMenuItem_Click(object sender, EventArgs e)
         {
             ClockState(false);
             if (OpenDem.ShowDialog() == DialogResult.OK)
@@ -138,11 +158,12 @@ namespace QuakeDemoFun
                 Display.Bsp = null;
                 ClearDemo();
                 AddDemo(OpenDem.FileName);
+                AutoloadBsp();
                 Ready();
             }
         }
 
-        private void overlayToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OverlayMenuItem_Click(object sender, EventArgs e)
         {
             ClockState(false);
             if (OpenDem.ShowDialog() == DialogResult.OK)
@@ -152,12 +173,12 @@ namespace QuakeDemoFun
             }
         }
 
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CloseMenuItem_Click(object sender, EventArgs e)
         {
             ClearDemo();
         }
 
-        private void loadBSPToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LoadBSPMenuItem_Click(object sender, EventArgs e)
         {
             ClockState(false);
             if (OpenBsp.ShowDialog() == DialogResult.OK)
@@ -165,6 +186,25 @@ namespace QuakeDemoFun
                 Bsp bsp = new Bsp(OpenBsp.FileName);
                 Display.Bsp = bsp;
                 Display.Invalidate();
+            }
+        }
+
+        private void AddPAKMenuItem_Click(object sender, EventArgs e)
+        {
+            ClockState(false);
+            if (OpenPak.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = OpenPak.FileName;
+                if (LoadedPaks.Any(p => p.FileName == fileName))
+                {
+                    MessageBox.Show("Already loaded.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                PackFile pak = new PackFile(fileName);
+                LoadedPaks.Add(pak);
+
+                AutoloadBsp();
             }
         }
     }
