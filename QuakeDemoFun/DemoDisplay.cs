@@ -158,6 +158,7 @@ namespace QuakeDemoFun
                 {
                     Player pl = Demo.GetPlayer((byte)(ent.Number - 1));
                     DrawPlayer(e.Graphics, ent, pl);
+                    DrawAngle(e.Graphics, ent);
                     continue;
                 }
 
@@ -169,6 +170,7 @@ namespace QuakeDemoFun
 
                 Rectangle rect = GetDrawRect(ent, minf.Size);
                 e.Graphics.FillRectangle(minf.Background, rect);
+                if (minf.Type == ModelType.Enemy) DrawAngle(e.Graphics, ent);
 
                 if (minf.Label != null)
                 {
@@ -220,6 +222,17 @@ namespace QuakeDemoFun
             g.FillRectangle(bot, r);
             g.FillRectangle(top, r.Left, r.Top, r.Width, r.Height / 2);
             g.DrawRectangle(Pens.White, r);
+        }
+
+        private void DrawAngle(Graphics g, Entity ent, Pen pen = null, int size = 16)
+        {
+            Point p = Convert(ent.Origin);
+            double yaw = ent.Angles.Y;
+            double rad = yaw * Math.PI / 180;
+            float dx = (float)(Math.Cos(rad) * size);
+            float dy = (float)(Math.Sin(rad) * size);
+
+            g.DrawLine(pen ?? Pens.White, p.X, p.Y, p.X + dx, p.Y - dy);
         }
 
         public void Cross(QCoords org, Color c, int size)

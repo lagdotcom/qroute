@@ -19,8 +19,7 @@ visualizing Quake demos. This latest version runs in Windows.
 2. Planned Features
 ===================
 - Sound playback
-- Velocity/Angles display
-- Dead enemy removal
+- Velocity display
 - Many configurable options
 - Marathon playback?
 
@@ -30,6 +29,7 @@ visualizing Quake demos. This latest version runs in Windows.
 1.3 - 2020-05-07
 	display now configurable! check models.txt
 	added 'cross' display for dead enemies
+	added direction display for players/enemies
 
 1.2 - 2020-05-03
 	publically released on SDA!
