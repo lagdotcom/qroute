@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -11,21 +12,23 @@ namespace QuakeDemoFun
         public MainForm()
         {
             InitializeComponent();
-            Demo = new ParsedDemo();
+            Demos = new List<ParsedDemo>();
             LoadedPaks = new List<PackFile>();
         }
 
         public List<PackFile> LoadedPaks { get; private set; }
 
-        public ParsedDemo Demo { get; private set; }
+        public List<ParsedDemo> Demos { get; private set; }
 
         public float Time { get; private set; }
+        public float MinTime { get; private set; }
+        public float MaxTime { get; private set; }
 
         public void ClearDemo()
         {
-            if (Demo != null) Demo.Dispose();
-            Demo = null;
-            Display.Demo = null;
+            foreach (ParsedDemo Demo in Demos) Demo.Dispose();
+            Demos.Clear();
+            Display.ClearDemos();
             GC.Collect();
 
             Display.Invalidate();
@@ -34,27 +37,56 @@ namespace QuakeDemoFun
 
         public void Goto(float time)
         {
-            if (time < Demo.Start) time = Demo.Start;
-            if (time > Demo.End) time = Demo.End;
+            if (time < MinTime) time = MinTime;
+            if (time > MaxTime) time = MaxTime;
             Time = time;
 
             Timeline.Value = IntTime(time);
             Timeline_ValueChanged(this, null);
         }
 
-        private void AddDemo(string filename)
+        private void OverlayDemo(string filename)
         {
             QDemo dem = QDemo.Load(filename);
-            if (Demo == null) Demo = new ParsedDemo();
-            Demo.Parse(dem);
+            ParsedDemo demo;
+
+            if (Demos.Count > 0) demo = Demos[0];
+            else
+            {
+                demo = new ParsedDemo();
+                Demos.Add(demo);
+                MinTime = 100;
+                MaxTime = 0;
+            }
+            demo.Parse(dem);
+
+            MinTime = Math.Min(MinTime, demo.Start);
+            MaxTime = Math.Max(MaxTime, demo.End);
+        }
+
+        private void MergeDemo(string filename)
+        {
+            QDemo dem = QDemo.Load(filename);
+            ParsedDemo demo = new ParsedDemo();
+
+            if (Demos.Count == 0) 
+            {
+                MinTime = 100;
+                MaxTime = 0;
+            }
+            demo.Parse(dem);
+            Demos.Add(demo);
+
+            MinTime = Math.Min(MinTime, demo.Start);
+            MaxTime = Math.Max(MaxTime, demo.End);
         }
 
         private void Ready()
         {
-            Display.Demo = Demo;
+            Display.Use(Demos);
 
-            Timeline.Minimum = IntTime(Demo.Start);
-            Timeline.Maximum = IntTime(Demo.End);
+            Timeline.Minimum = IntTime(MinTime);
+            Timeline.Maximum = IntTime(MaxTime);
             Goto(0);
 
             ClockState(false);
@@ -78,11 +110,12 @@ namespace QuakeDemoFun
 
         private void AutoloadBsp()
         {
-            if (Demo == null || Demo.Models.Count < 1) return;
+            var demo = Demos.First();
+            if (demo == null || demo.Models.Count < 1) return;
 
             foreach (PackFile pak in LoadedPaks)
             {
-                string bspfile = Demo.Models[0];
+                string bspfile = demo.Models[0];
                 if (pak.Contains(bspfile))
                 {
                     Bsp bsp = new Bsp(pak.GetFile(bspfile));
@@ -103,16 +136,16 @@ namespace QuakeDemoFun
 
         private void PlayButton_Click(object sender, EventArgs e)
         {
-            if (Time == Demo.End) Goto(Demo.Start);
+            if (Time == MaxTime) Goto(MinTime);
             ClockState(true);
         }
 
         private void Clock_Tick(object sender, EventArgs e)
         {
             float next = Time + (Clock.Interval / 1000f);
-            if (next > Demo.End)
+            if (next > MaxTime)
             {
-                next = Demo.End;
+                next = MaxTime;
                 ClockState(false);
             }
 
@@ -126,7 +159,7 @@ namespace QuakeDemoFun
 
         private void ClockState(bool enabled)
         {
-            if (Demo == null)
+            if (Demos.Count < 1)
             {
                 PlayButton.Enabled = false;
                 StopButton.Enabled = false;
@@ -155,10 +188,33 @@ namespace QuakeDemoFun
             ClockState(false);
             if (OpenDem.ShowDialog() == DialogResult.OK)
             {
+                if (Path.GetExtension(OpenDem.FileName).ToUpper() == ".DZ")
+                {
+                    DZip dz = new DZip(OpenDem.FileName);
+                    return;
+                }
+
                 Display.Bsp = null;
                 ClearDemo();
-                AddDemo(OpenDem.FileName);
+                OverlayDemo(OpenDem.FileName);
                 AutoloadBsp();
+                Ready();
+            }
+        }
+
+
+        private void MergeMenuItem_Click(object sender, EventArgs e)
+        {
+            ClockState(false);
+            if (OpenDem.ShowDialog() == DialogResult.OK)
+            {
+                if (Path.GetExtension(OpenDem.FileName).ToUpper() == ".DZ")
+                {
+                    DZip dz = new DZip(OpenDem.FileName);
+                    return;
+                }
+
+                MergeDemo(OpenDem.FileName);
                 Ready();
             }
         }
@@ -168,7 +224,7 @@ namespace QuakeDemoFun
             ClockState(false);
             if (OpenDem.ShowDialog() == DialogResult.OK)
             {
-                AddDemo(OpenDem.FileName);
+                OverlayDemo(OpenDem.FileName);
                 Ready();
             }
         }

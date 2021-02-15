@@ -29,9 +29,11 @@ namespace QuakeDemoFun
         }
 
         private void Read(BinaryReader br)
-        { 
-            Version = br.ReadInt32();
-            if (Version != 0x1d) throw new NotImplementedException($"BSP version: {Version:X} != 1D");
+        {
+            uint RawVersion = br.ReadUInt32();
+            if (!Enum.IsDefined(typeof(BspVersion), RawVersion))
+                throw new NotImplementedException($"Unsupported BSP version: {RawVersion:X}");
+            Version = (BspVersion)RawVersion;
 
             DirEntry ents_e = new DirEntry(br);
             DirEntry planes_e = new DirEntry(br);
@@ -51,21 +53,21 @@ namespace QuakeDemoFun
 
             br.BaseStream.Seek(planes_e.Offset, SeekOrigin.Begin);
             List<Plane> planes = new List<Plane>();
-            for (var i = 0; i < planes_e.Size / 20; i++)
-                planes.Add(new Plane(br));
+            for (var i = 0; i < planes_e.Size / Plane.Size(Version); i++)
+                planes.Add(new Plane(br, Version));
 
             br.BaseStream.Seek(vertices_e.Offset, SeekOrigin.Begin);
             Vertices = new List<Vertex>();
-            for (var i = 0; i < vertices_e.Size / 12; i++)
-                Vertices.Add(new Vertex(br));
+            for (var i = 0; i < vertices_e.Size / Vertex.Size(Version); i++)
+                Vertices.Add(new Vertex(br, Version));
 
             br.BaseStream.Seek(edges_e.Offset, SeekOrigin.Begin);
             Edges = new List<Edge>();
-            for (var i = 0; i < edges_e.Size / 4; i++)
-                Edges.Add(new Edge(br));
+            for (var i = 0; i < edges_e.Size / Edge.Size(Version); i++)
+                Edges.Add(new Edge(br, Version));
         }
 
-        public int Version { get; private set; }
+        public BspVersion Version { get; private set; }
 
         internal List<Edge> Edges { get; private set; }
         internal List<Vertex> Vertices { get; private set; }
@@ -86,7 +88,7 @@ namespace QuakeDemoFun
 
         internal struct Plane
         {
-            public Plane(BinaryReader br)
+            public Plane(BinaryReader br, BspVersion version)
             {
                 NormalX = br.ReadSingle();
                 NormalY = br.ReadSingle();
@@ -100,6 +102,11 @@ namespace QuakeDemoFun
             public float NormalZ { get; set; }
             public float Distance { get; set; }
             public PlaneType Type { get; set; }
+
+            internal static int Size(BspVersion version)
+            {
+                return 20;
+            }
 
             public override string ToString() => $"[{NormalX} {NormalY} {NormalZ}] d{Distance} {Type}";
         }
@@ -116,7 +123,7 @@ namespace QuakeDemoFun
 
         internal struct Vertex
         {
-            public Vertex(BinaryReader br)
+            public Vertex(BinaryReader br, BspVersion version)
             {
                 X = br.ReadSingle();
                 Y = br.ReadSingle();
@@ -127,19 +134,40 @@ namespace QuakeDemoFun
             public float Y { get; set; }
             public float Z { get; set; }
 
+            internal static int Size(BspVersion version)
+            {
+                return 12;
+            }
+
             public override string ToString() => $"({X} {Y} {Z})";
         }
 
         internal struct Edge
         {
-            public Edge(BinaryReader br)
+            public Edge(BinaryReader br, BspVersion version)
             {
-                A = br.ReadInt16();
-                B = br.ReadInt16();
+                if (version == BspVersion.Quake2BSP)
+                {
+                    A = br.ReadUInt16();
+                    B = br.ReadUInt16();
+                }
+                else
+                {
+                    A = br.ReadInt32();
+                    B = br.ReadInt32();
+                }
             }
 
-            public short A { get; set; }
-            public short B { get; set; }
+            public int A { get; set; }
+            public int B { get; set; }
+
+            internal static int Size(BspVersion version)
+            {
+                if (version == BspVersion.Quake2BSP)
+                    return 4;
+
+                return 8;
+            }
 
             public override string ToString() => $"{A}-{B}";
         }

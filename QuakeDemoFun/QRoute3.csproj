@@ -62,10 +62,14 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Zlib.Portable, Version=1.11.0.0, Culture=neutral, PublicKeyToken=431cba815f6a8b5b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zlib.Portable.Signed.1.11.0\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid\Zlib.Portable.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinaryReaderExtensions.cs" />
     <Compile Include="Bsp.cs" />
+    <Compile Include="BspVersion.cs" />
     <Compile Include="DemoDisplay.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -75,6 +79,7 @@
     <Compile Include="Demo\EntityEffects.cs" />
     <Compile Include="Demo\StatIndex.cs" />
     <Compile Include="Demo\TempEntityType.cs" />
+    <Compile Include="DZip.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Footstep.cs" />
     <Compile Include="GameSource.cs" />
@@ -141,6 +146,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

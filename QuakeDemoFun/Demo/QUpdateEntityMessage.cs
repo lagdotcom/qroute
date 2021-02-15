@@ -15,7 +15,7 @@ namespace QuakeDemoFun
             else
                 rawmask = code;
 
-            MessageMask Mask = (MessageMask)rawmask;
+            Mask = (MessageMask)rawmask;
             
             Entity = Mask.HasFlag(MessageMask.Entity) ? br.ReadInt16() : br.ReadByte();
             if (Mask.HasFlag(MessageMask.ModelIndex)) ModelIndex = br.ReadByte();
@@ -30,6 +30,8 @@ namespace QuakeDemoFun
             if (Mask.HasFlag(MessageMask.OriginZ)) OriginZ = br.ReadCoord();
             if (Mask.HasFlag(MessageMask.AnglesZ)) AnglesZ = br.ReadAngle();
         }
+
+        public MessageMask Mask { get; private set; }
 
         public short Entity { get; private set; }
         public byte? ModelIndex { get; private set; }
@@ -61,6 +63,7 @@ namespace QuakeDemoFun
             AnglesY = 0x0010,
             OriginZ = 0x0008,
             AnglesZ = 0x0200,
+            New = 0x0020,
         }
     }
 }
